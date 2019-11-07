@@ -18,6 +18,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
 const tc = __importStar(require("@actions/tool-cache"));
+const fs = __importStar(require("fs"));
 const os = __importStar(require("os"));
 const RestClient_1 = require("typed-rest-client/RestClient");
 function run() {
@@ -69,6 +70,9 @@ function ensure(version) {
         core.info(`download from: ${url}`);
         const downloadPath = yield tc.downloadTool(url);
         core.info(`downloaded to: ${downloadPath}`);
+        const mode = '0755';
+        core.info(`change ${downloadPath} mode to ${mode}`);
+        fs.chmodSync(downloadPath, mode);
         const cacheSavePath = yield tc.cacheFile(downloadPath, 'swagger', 'go-swagger', version);
         core.info(`cached to: ${cacheSavePath}`);
         return cacheSavePath;
