@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
+import * as fs from 'fs';
 import * as os from 'os';
 import { RestClient } from 'typed-rest-client/RestClient';
 
@@ -63,6 +64,10 @@ async function ensure(version: string): Promise<string> {
 
   const downloadPath = await tc.downloadTool(url);
   core.info(`downloaded to: ${downloadPath}`);
+
+  const mode = '0755';
+  core.info(`change ${downloadPath} mode to ${mode}`);
+  fs.chmodSync(downloadPath, mode);
 
   const cacheSavePath = await tc.cacheFile(downloadPath, 'swagger', 'go-swagger', version);
   core.info(`cached to: ${cacheSavePath}`);
