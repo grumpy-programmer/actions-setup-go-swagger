@@ -1,0 +1,10 @@
+name: 'Setup go-swagger'
+description: 'Setup go-swagger and add it to the PATH'
+author: 'Grumpy Programmer'
+inputs:
+  go-swagger-version:
+    description: 'The go-swagger version to download (if necessary) and use. Example: 0.21.0'
+    default: ''
+runs:
+  using: 'node12'
+  main: 'dist/setup-go-swagger.js'
