@@ -1,0 +1,21 @@
+{
+  "name": "actions-setup-go-swagger",
+  "version": "1.0.0",
+  "description": "setup go-swagger action",
+  "main": "lib/setup-go-swagger.js",
+  "repository": "https://github.com/grumpy-programmer/actions-setup-go-swagger",
+  "author": "Grumpy Programmer",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "yarn install --production --modules-folder dist/node_modules",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/tool-cache": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.6",
+    "typescript": "^3.5.1"
+  }
+}
